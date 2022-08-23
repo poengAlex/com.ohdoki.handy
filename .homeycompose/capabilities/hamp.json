@@ -1,0 +1,10 @@
+{
+    "type": "boolean",
+    "title": {
+        "en": "Alternating mode"
+    },
+    "getable": true,
+    "setable": true,
+    "uiComponent": "toggle",
+    "uiQuickAction": true
+}

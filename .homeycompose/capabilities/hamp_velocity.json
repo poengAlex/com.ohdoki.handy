@@ -1,0 +1,16 @@
+{
+    "type": "number",
+    "title": {
+        "en": "Alternating mode velocity"
+    },
+    "getable": true,
+    "setable": true,
+    "units": "%",
+    "uiComponent": "slider",
+    "uiQuickAction": false,
+    "min": 0,
+    "max": 100,
+    "steps": 1,
+    "decimals": 0,
+    "icon": "/assets/up-and-down.svg"
+}

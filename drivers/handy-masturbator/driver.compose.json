@@ -1,0 +1,32 @@
+{
+  "name": {
+    "en": "Handy masturbator"
+  },
+  "class": "other",
+  "capabilities": [
+    "hamp",
+    "hamp_velocity",
+    "play_script",
+    "play_script_preset",
+    "set_position",
+    "stroke_zone",
+    "state_online",
+    "state_mode"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "cloud"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "key_view"
+    }
+  ]
+}

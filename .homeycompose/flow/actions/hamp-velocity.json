@@ -1,0 +1,20 @@
+{
+  "title": {
+    "en": "HAMP velocity"
+  },
+  "titleFormatted": {
+    "en": "Sets the HAMP velcoity to [[velocity]] %"
+  },
+  "hint": {
+    "en": "Set the speed of HAMP mode"
+  },
+  "args": [
+    {
+      "type": "range",
+      "name": "velocity",
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  ]
+}

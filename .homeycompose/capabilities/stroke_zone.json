@@ -1,0 +1,48 @@
+{
+    "type": "enum",
+    "title": {
+        "en": "Stroke zone"
+    },
+    "getable": false,
+    "setable": true,
+    "uiComponent": "picker",
+    "values": [
+        {
+            "id": "full",
+            "title": {
+                "en": "Full stroke"
+            }
+        },
+        {
+            "id": "tip",
+            "title": {
+                "en": "Just the tip"
+            }
+        },
+        {
+            "id": "base",
+            "title": {
+                "en": "Just the base"
+            }
+        },
+        {
+            "id": "base-md",
+            "title": {
+                "en": "Just the base, medium length"
+            }
+        },
+        {
+            "id": "base-lg",
+            "title": {
+                "en": "Just the base, long length"
+            }
+        },
+        {
+            "id": "middle",
+            "title": {
+                "en": "Middle"
+            }
+        }
+    ],
+    "uiQuickAction": false
+}

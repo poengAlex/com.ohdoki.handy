@@ -1,0 +1,401 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.ohdoki.handy",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Handy male masturbator"
+  },
+  "description": {
+    "en": "Control the handy male masturbation machine."
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Sweet tech AS",
+    "email": "alexander@sweettech.no"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "Handy offline"
+        },
+        "hint": {
+          "en": "Triggers when your Handy is offline"
+        },
+        "id": "handy-offline"
+      },
+      {
+        "title": {
+          "en": "Handy online"
+        },
+        "hint": {
+          "en": "Triggers when your Handy is online"
+        },
+        "id": "handy-online"
+      }
+    ],
+    "conditions": [
+      {
+        "title": {
+          "en": "Online"
+        },
+        "id": "handy-connected",
+        "hint": {
+          "en": "Is your Handy online?"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "HAMP start"
+        },
+        "titleFormatted": {
+          "en": "Starts/Stops ([[start]]) HAMP mode"
+        },
+        "hint": {
+          "en": "Start or stop Handy Alternate Motion Protocol (HAMP)"
+        },
+        "args": [
+          {
+            "type": "checkbox",
+            "name": "start",
+            "title": {
+              "en": "Start"
+            }
+          }
+        ],
+        "id": "hamp-start"
+      },
+      {
+        "title": {
+          "en": "HAMP velocity"
+        },
+        "titleFormatted": {
+          "en": "Sets the HAMP velcoity to [[velocity]] %"
+        },
+        "hint": {
+          "en": "Set the speed of HAMP mode"
+        },
+        "args": [
+          {
+            "type": "range",
+            "name": "velocity",
+            "min": 0,
+            "max": 100,
+            "step": 1
+          }
+        ],
+        "id": "hamp-velocity"
+      },
+      {
+        "title": {
+          "en": "Play script"
+        },
+        "titleFormatted": {
+          "en": "Plays a CSV file from url: [[url]]"
+        },
+        "hint": {
+          "en": "PLay a script on the Handy"
+        },
+        "args": [
+          {
+            "type": "text",
+            "name": "url",
+            "placeholder": {
+              "en": "The url of the script [CSV]"
+            }
+          }
+        ],
+        "id": "play-script"
+      },
+      {
+        "title": {
+          "en": "Play script preset"
+        },
+        "titleFormatted": {
+          "en": "Plays a preset CSV file. Preset script [[preset]]."
+        },
+        "hint": {
+          "en": "Play a preset script on Handy"
+        },
+        "args": [
+          {
+            "type": "dropdown",
+            "name": "preset",
+            "values": [
+              {
+                "id": "up-down-5s-192mms",
+                "label": {
+                  "en": "Up down for 5 sec medium speed"
+                }
+              },
+              {
+                "id": "sinus-for-10s",
+                "label": {
+                  "en": "sinus for 10s"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "play-script-preset"
+      },
+      {
+        "title": {
+          "en": "Set position"
+        },
+        "titleFormatted": {
+          "en": "Set the position of the slider to [[position]]mm the move should take [[duration]]ms"
+        },
+        "hint": {
+          "en": "Set the position of the slider"
+        },
+        "args": [
+          {
+            "type": "range",
+            "name": "duration",
+            "title": "The duration of the move",
+            "label": "ms",
+            "min": 1,
+            "max": 5000,
+            "step": 1
+          },
+          {
+            "type": "range",
+            "name": "position",
+            "title": "The position of the slider",
+            "label": "mm",
+            "min": 0,
+            "max": 100,
+            "step": 1
+          }
+        ],
+        "id": "set-position"
+      },
+      {
+        "title": {
+          "en": "Stroke zone"
+        },
+        "titleFormatted": {
+          "en": "Set the stroke zone fom [[min]]% to [[max]]%"
+        },
+        "hint": {
+          "en": "Set the stroke zone"
+        },
+        "args": [
+          {
+            "type": "range",
+            "name": "min",
+            "min": 0,
+            "max": 100,
+            "step": 1
+          },
+          {
+            "type": "range",
+            "name": "max",
+            "min": 0,
+            "max": 100,
+            "step": 1
+          }
+        ],
+        "id": "stroke-zone"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Handy masturbator"
+      },
+      "class": "other",
+      "capabilities": [
+        "hamp",
+        "hamp_velocity",
+        "play_script",
+        "play_script_preset",
+        "set_position",
+        "stroke_zone",
+        "state_online",
+        "state_mode"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/handy-masturbator/assets/images/small.png",
+        "large": "/drivers/handy-masturbator/assets/images/large.png",
+        "xlarge": "/drivers/handy-masturbator/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "key_view"
+        }
+      ],
+      "id": "handy-masturbator",
+      "settings": [
+        {
+          "id": "key",
+          "type": "text",
+          "label": {
+            "en": "Connection key"
+          },
+          "value": "",
+          "hint": {
+            "en": "The Connection Key of your Handy masturbator"
+          }
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "hamp": {
+      "type": "boolean",
+      "title": {
+        "en": "Alternating mode"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "uiQuickAction": true
+    },
+    "hamp_velocity": {
+      "type": "number",
+      "title": {
+        "en": "Alternating mode velocity"
+      },
+      "getable": true,
+      "setable": true,
+      "units": "%",
+      "uiComponent": "slider",
+      "uiQuickAction": false,
+      "min": 0,
+      "max": 100,
+      "steps": 1,
+      "decimals": 0,
+      "icon": "/assets/up-and-down.svg"
+    },
+    "play_script": {
+      "type": "boolean",
+      "title": {
+        "en": "Play a script"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "toggle",
+      "uiQuickAction": false
+    },
+    "play_script_preset": {
+      "type": "boolean",
+      "title": {
+        "en": "Play a preset script"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "toggle",
+      "uiQuickAction": false
+    },
+    "set_position": {
+      "type": "number",
+      "title": {
+        "en": "Set the position of the slider (move duration 500ms)"
+      },
+      "getable": true,
+      "setable": true,
+      "units": "mm",
+      "uiComponent": "slider",
+      "uiQuickAction": false,
+      "min": 0,
+      "max": 100,
+      "steps": 1,
+      "decimals": 0,
+      "icon": "/assets/up-and-down.svg"
+    },
+    "state_mode": {
+      "type": "number",
+      "title": {
+        "en": "Mode"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "sensor",
+      "icon": "/assets/mode.svg",
+      "uiQuickAction": false
+    },
+    "state_online": {
+      "type": "boolean",
+      "title": {
+        "en": "Online"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "sensor",
+      "icon": "/assets/online.svg",
+      "uiQuickAction": false
+    },
+    "stroke_zone": {
+      "type": "enum",
+      "title": {
+        "en": "Stroke zone"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "full",
+          "title": {
+            "en": "Full stroke"
+          }
+        },
+        {
+          "id": "tip",
+          "title": {
+            "en": "Just the tip"
+          }
+        },
+        {
+          "id": "base",
+          "title": {
+            "en": "Just the base"
+          }
+        },
+        {
+          "id": "base-md",
+          "title": {
+            "en": "Just the base, medium length"
+          }
+        },
+        {
+          "id": "base-lg",
+          "title": {
+            "en": "Just the base, long length"
+          }
+        },
+        {
+          "id": "middle",
+          "title": {
+            "en": "Middle"
+          }
+        }
+      ],
+      "uiQuickAction": false
+    }
+  }
+}

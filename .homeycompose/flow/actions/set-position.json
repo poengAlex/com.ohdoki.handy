@@ -1,0 +1,31 @@
+{
+  "title": {
+    "en": "Set position"
+  },
+  "titleFormatted": {
+    "en": "Set the position of the slider to [[position]]mm the move should take [[duration]]ms"
+  },
+  "hint": {
+    "en": "Set the position of the slider"
+  },
+  "args": [
+    {
+      "type": "range",
+      "name": "duration",
+      "title": "The duration of the move",
+      "label": "ms",
+      "min": 1,
+      "max": 5000,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "name": "position",
+      "title": "The position of the slider",
+      "label": "mm",
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+    "settings": {
+        "title": "Handy settings",
+        "subtitle": "Time [ms] between checking for status change of your Handy. A low time will use more resources on your Homey, but make the system more responsive. (Change requires restart of the app)"
+    }
+}

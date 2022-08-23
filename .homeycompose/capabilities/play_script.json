@@ -1,0 +1,10 @@
+{
+    "type": "boolean",
+    "title": {
+        "en": "Play a script"
+    },
+    "getable": false,
+    "setable": true,
+    "uiComponent": "toggle",
+    "uiQuickAction": false
+}

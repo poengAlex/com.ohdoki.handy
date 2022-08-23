@@ -1,0 +1,125 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Paring view - Connection key</title>
+	<style>
+		/* (A) THE BASE */
+		.bar {
+			padding: 10px;
+			margin: 10px;
+			color: #333;
+			background: #fafafa;
+			border: 1px solid #ccc;
+		}
+
+		/* (B) THE VARIATIONS */
+		.info {
+			color: #204a8e;
+			background: #c9ddff;
+			border: 1px solid #4c699b;
+		}
+
+		.success {
+			color: #2b7515;
+			background: #ecffd6;
+			border: 1px solid #617c42;
+		}
+
+		.warn {
+			color: #756e15;
+			background: #fffbd1;
+			border: 1px solid #87803e;
+		}
+
+		.error {
+			color: #ba3939;
+			background: #ffe0e0;
+			border: 1px solid #a33a3a;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="max-width: 700px">
+		<h1>Enter your Handys Connection Key</h1>
+		<form onsubmit="event.preventDefault();formSubmit()">
+			<p class="field">
+				Your Handy has to be online (purple lights) to be able to connect.
+			</p>
+			<div id="not-connected-error" class="bar error" style="display: none;">
+				Your Handy is not connected. Please make sure that your Handy is online.
+			</div>
+			<fieldset>
+				<!-- <legend>Connection key</legend> -->
+				<div class="field row">
+					<label for="connection-key">Connection key</label>
+					<input id="connection-key" type="text" value="" required />
+				</div>
+			</fieldset>
+			<button id="save" class="right" type="submit">Try to connect</button>
+		</form>
+	</div>
+	<script type="application/javascript">
+
+		function formSubmit() {
+			console.log("On submit");
+			const key = document.getElementById("connection-key").value;
+			const errorAlert = document.getElementById("not-connected-error");
+			errorAlert.style.display = "none";
+
+			Homey.emit("connect", { key }).then(function (connected) {
+				console.log(connected);
+				if (connected) {
+					//All good -> lets add the device
+					console.log('Connected!');
+					Homey.createDevice({
+						// The name of the device that will be shown to the user
+						name: "Handy - " + key,
+
+						// The data object is required and should contain only unique properties for the device.
+						// So a MAC address is good, but an IP address is bad (can change over time)
+						data: {
+							key: key,
+						},
+
+						// Optional: The store is dynamic and persistent storage for your device
+						store: {
+							// For example store the IP address of your device
+							connected: true,
+						},
+
+						// Optional: Initial device settings that can be changed by the user afterwards
+						settings: {
+							key: key,
+						},
+					})
+						.then(function (result) {
+							Homey.done();
+						})
+						.catch(function (error) {
+							Homey.alert(err);
+						});
+				} else {
+
+					errorAlert.style.display = "block";
+				}
+
+
+
+			});
+		}
+
+		Homey.on("hello", function (message) {
+			Homey.alert(message); // Hello to you!
+			return "Hi!"; // send a reply back to the pairing session
+
+			// you can return a promise if you need to do some async
+			// work before replying to the message.
+		});
+	</script>
+</body>
+
+</html>

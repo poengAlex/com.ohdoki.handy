@@ -1,0 +1,16 @@
+{
+    "type": "number",
+    "title": {
+        "en": "Set the position of the slider (move duration 500ms)"
+    },
+    "getable": true,
+    "setable": true,
+    "units": "mm",
+    "uiComponent": "slider",
+    "uiQuickAction": false,
+    "min": 0,
+    "max": 100,
+    "steps": 1,
+    "decimals": 0,
+    "icon": "/assets/up-and-down.svg"
+}

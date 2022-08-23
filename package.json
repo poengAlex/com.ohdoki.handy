@@ -1,0 +1,26 @@
+{
+  "name": "com.ohdoki.handy",
+  "version": "1.0.0",
+  "main": "app.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon --exec homey app run --watch ['app.ts'] --ext ['ts']",
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "importApi": "rimraf API && openapi --exportSchemas true --input https://www.handyfeeling.com/api/handy/v2/spec --output API --name handyApi --indent 4 -c axios"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "form-data": "^4.0.0",
+    "node-fetch": "^3.2.10"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.11",
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.1",
+    "@types/node": "^18.7.8",
+    "eslint": "^7.32.0",
+    "eslint-config-athom": "^3.1.1",
+    "openapi-typescript-codegen": "^0.23.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  }
+}

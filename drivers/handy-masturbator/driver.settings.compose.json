@@ -1,0 +1,13 @@
+[
+    {
+        "id": "key",
+        "type": "text",
+        "label": {
+            "en": "Connection key"
+        },
+        "value": "",
+        "hint": {
+            "en": "The Connection Key of your Handy masturbator"
+        }
+    }
+]
