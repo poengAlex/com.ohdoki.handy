@@ -15,14 +15,21 @@
   "category": [
     "tools"
   ],
+  "brandColor": "#4e5862",
   "permissions": [],
   "images": {
-    "small": "/assets/images/small.png",
-    "large": "/assets/images/large.png",
-    "xlarge": "/assets/images/xlarge.png"
+    "small": "/assets/images/handy-speaker-250px.png",
+    "large": "/assets/images/handy-speaker-500px.png",
+    "xlarge": "/assets/images/handy-speaker-1000px.png"
   },
   "author": {
-    "name": "Sweet tech AS",
+    "name": "Sweet tech AS (soon Ohdoki AS)",
     "email": "alexander@sweettech.no"
-  }
+  },
+  "homepage": "https://www.thehandy.com/",
+  "source": "https://github.com/poengAlex/com.ohdoki.handy",
+  "bugs": {
+    "url": "https://github.com/poengAlex/com.ohdoki.handy/issues/new"
+  },
+  "support": "mailto:alexander@sweettech.no"
 }

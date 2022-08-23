@@ -3,10 +3,10 @@
         {
             "id": "hamp-start",
             "title": {
-                "en": "HAMP start"
+                "en": "Alternating motion"
             },
             "titleFormatted": {
-                "en": "Starts/Stops ([[start]]) HAMP mode"
+                "en": "Starts/Stops ([[start]]) Alternating motion"
             },
             "hint": {
                 "en": "Start or stop Handy Alternate Motion Protocol (HAMP)"
@@ -24,7 +24,7 @@
         {
             "id": "hamp-velocity",
             "title": {
-                "en": "HAMP velocity"
+                "en": "Alternating motion velocity"
             },
             "titleFormatted": {
                 "en": "Sets the HAMP velcoity to [[velocity]]"
@@ -46,7 +46,7 @@
         {
             "id": "play-script-preset",
             "title": {
-                "en": "Play script preset"
+                "en": "Play a script preset"
             },
             "titleFormatted": {
                 "en": "Plays a preset CSV file. Preset script [[preset]]."
@@ -84,7 +84,7 @@
         {
             "id": "play-script",
             "title": {
-                "en": "Play script"
+                "en": "Play a script"
             },
             "titleFormatted": {
                 "en": "Plays a CSV file from url: [[url]]"
@@ -105,7 +105,7 @@
         {
             "id": "set-position",
             "title": {
-                "en": "Set position"
+                "en": "Set position of the slider"
             },
             "titleFormatted": {
                 "en": "Set the position of the slider to [[position]] the move should take [[duration]]"
@@ -137,7 +137,7 @@
         {
             "id": "stroke-zone",
             "title": {
-                "en": "Stroke zone"
+                "en": "Set the stroke zone"
             },
             "titleFormatted": {
                 "en": "Set the stroke zone fom [[min]] to [[max]]"
@@ -171,7 +171,6 @@
             "title": {
                 "en": "Online"
             },
-            "id": "handy-connected",
             "hint": {
                 "en": "Is your Handy online?"
             }
