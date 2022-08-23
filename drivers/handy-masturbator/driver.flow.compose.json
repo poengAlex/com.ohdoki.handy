@@ -171,6 +171,9 @@
             "title": {
                 "en": "Online"
             },
+            "titleFormatted": {
+                "en": "Online"
+            },
             "hint": {
                 "en": "Is your Handy online?"
             }
@@ -182,6 +185,9 @@
             "title": {
                 "en": "Handy offline"
             },
+            "titleFormatted": {
+                "en": "Handy offline"
+            },
             "hint": {
                 "en": "Triggers when your Handy is offline"
             }
@@ -189,6 +195,9 @@
         {
             "id": "handy-online",
             "title": {
+                "en": "Handy online"
+            },
+            "titleFormatted": {
                 "en": "Handy online"
             },
             "hint": {
