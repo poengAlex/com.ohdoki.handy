@@ -8,7 +8,7 @@
     "local"
   ],
   "name": {
-    "en": "Handy male masturbator"
+    "en": "Handy interactive stroker"
   },
   "description": {
     "en": "Control the handy male masturbation machine."
@@ -29,37 +29,59 @@
   "flow": {
     "triggers": [
       {
+        "id": "handy-offline",
         "title": {
           "en": "Handy offline"
         },
         "hint": {
           "en": "Triggers when your Handy is offline"
         },
-        "id": "handy-offline"
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          }
+        ]
       },
       {
+        "id": "handy-online",
         "title": {
           "en": "Handy online"
         },
         "hint": {
           "en": "Triggers when your Handy is online"
         },
-        "id": "handy-online"
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          }
+        ]
       }
     ],
     "conditions": [
       {
+        "id": "handy-connected",
         "title": {
           "en": "Online"
         },
-        "id": "handy-connected",
         "hint": {
           "en": "Is your Handy online?"
-        }
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          }
+        ]
       }
     ],
     "actions": [
       {
+        "id": "hamp-start",
         "title": {
           "en": "HAMP start"
         },
@@ -71,58 +93,48 @@
         },
         "args": [
           {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          },
+          {
             "type": "checkbox",
             "name": "start",
             "title": {
               "en": "Start"
             }
           }
-        ],
-        "id": "hamp-start"
+        ]
       },
       {
+        "id": "hamp-velocity",
         "title": {
           "en": "HAMP velocity"
         },
         "titleFormatted": {
-          "en": "Sets the HAMP velcoity to [[velocity]] %"
+          "en": "Sets the HAMP velcoity to [[velocity]]"
         },
         "hint": {
           "en": "Set the speed of HAMP mode"
         },
         "args": [
           {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          },
+          {
             "type": "range",
             "name": "velocity",
             "min": 0,
             "max": 100,
-            "step": 1
+            "step": 1,
+            "label": "%"
           }
-        ],
-        "id": "hamp-velocity"
+        ]
       },
       {
-        "title": {
-          "en": "Play script"
-        },
-        "titleFormatted": {
-          "en": "Plays a CSV file from url: [[url]]"
-        },
-        "hint": {
-          "en": "PLay a script on the Handy"
-        },
-        "args": [
-          {
-            "type": "text",
-            "name": "url",
-            "placeholder": {
-              "en": "The url of the script [CSV]"
-            }
-          }
-        ],
-        "id": "play-script"
-      },
-      {
+        "id": "play-script-preset",
         "title": {
           "en": "Play script preset"
         },
@@ -134,6 +146,11 @@
         },
         "args": [
           {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          },
+          {
             "type": "dropdown",
             "name": "preset",
             "values": [
@@ -144,27 +161,64 @@
                 }
               },
               {
-                "id": "sinus-for-10s",
+                "id": "sinus-900ms",
                 "label": {
-                  "en": "sinus for 10s"
+                  "en": "sinus wave"
+                }
+              },
+              {
+                "id": "increasing-10s",
+                "label": {
+                  "en": "Slow -> medium -> fast (10 sec)"
                 }
               }
             ]
           }
-        ],
-        "id": "play-script-preset"
+        ]
       },
       {
+        "id": "play-script",
+        "title": {
+          "en": "Play script"
+        },
+        "titleFormatted": {
+          "en": "Plays a CSV file from url: [[url]]"
+        },
+        "hint": {
+          "en": "PLay a script on the Handy"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          },
+          {
+            "type": "text",
+            "name": "url",
+            "placeholder": {
+              "en": "The url of the script [CSV]"
+            }
+          }
+        ]
+      },
+      {
+        "id": "set-position",
         "title": {
           "en": "Set position"
         },
         "titleFormatted": {
-          "en": "Set the position of the slider to [[position]]mm the move should take [[duration]]ms"
+          "en": "Set the position of the slider to [[position]] the move should take [[duration]]"
         },
         "hint": {
           "en": "Set the position of the slider"
         },
         "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          },
           {
             "type": "range",
             "name": "duration",
@@ -183,43 +237,49 @@
             "max": 100,
             "step": 1
           }
-        ],
-        "id": "set-position"
+        ]
       },
       {
+        "id": "stroke-zone",
         "title": {
           "en": "Stroke zone"
         },
         "titleFormatted": {
-          "en": "Set the stroke zone fom [[min]]% to [[max]]%"
+          "en": "Set the stroke zone fom [[min]] to [[max]]"
         },
         "hint": {
           "en": "Set the stroke zone"
         },
         "args": [
           {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=handy-masturbator"
+          },
+          {
             "type": "range",
             "name": "min",
             "min": 0,
             "max": 100,
-            "step": 1
+            "step": 1,
+            "label": "%"
           },
           {
             "type": "range",
             "name": "max",
             "min": 0,
             "max": 100,
-            "step": 1
+            "step": 1,
+            "label": "%"
           }
-        ],
-        "id": "stroke-zone"
+        ]
       }
     ]
   },
   "drivers": [
     {
       "name": {
-        "en": "Handy masturbator"
+        "en": "Handy interactive stroker"
       },
       "class": "other",
       "capabilities": [
@@ -258,7 +318,7 @@
           },
           "value": "",
           "hint": {
-            "en": "The Connection Key of your Handy masturbator"
+            "en": "The Connection Key of your Handy interactive stroker"
           }
         }
       ]
@@ -302,13 +362,33 @@
       "uiQuickAction": false
     },
     "play_script_preset": {
-      "type": "boolean",
+      "type": "enum",
       "title": {
         "en": "Play a preset script"
       },
       "getable": false,
       "setable": true,
-      "uiComponent": "toggle",
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "up-down-5s-192mms",
+          "title": {
+            "en": "Up down for 5 sec medium speed"
+          }
+        },
+        {
+          "id": "sinus-900ms",
+          "title": {
+            "en": "sinus wave"
+          }
+        },
+        {
+          "id": "increasing-10s",
+          "title": {
+            "en": "Slow -> medium -> fast (10 sec)"
+          }
+        }
+      ],
       "uiQuickAction": false
     },
     "set_position": {

@@ -1,0 +1,200 @@
+{
+    "actions": [
+        {
+            "id": "hamp-start",
+            "title": {
+                "en": "HAMP start"
+            },
+            "titleFormatted": {
+                "en": "Starts/Stops ([[start]]) HAMP mode"
+            },
+            "hint": {
+                "en": "Start or stop Handy Alternate Motion Protocol (HAMP)"
+            },
+            "args": [
+                {
+                    "type": "checkbox",
+                    "name": "start",
+                    "title": {
+                        "en": "Start"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "hamp-velocity",
+            "title": {
+                "en": "HAMP velocity"
+            },
+            "titleFormatted": {
+                "en": "Sets the HAMP velcoity to [[velocity]]"
+            },
+            "hint": {
+                "en": "Set the speed of HAMP mode"
+            },
+            "args": [
+                {
+                    "type": "range",
+                    "name": "velocity",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "label": "%"
+                }
+            ]
+        },
+        {
+            "id": "play-script-preset",
+            "title": {
+                "en": "Play script preset"
+            },
+            "titleFormatted": {
+                "en": "Plays a preset CSV file. Preset script [[preset]]."
+            },
+            "hint": {
+                "en": "Play a preset script on Handy"
+            },
+            "args": [
+                {
+                    "type": "dropdown",
+                    "name": "preset",
+                    "values": [
+                        {
+                            "id": "up-down-5s-192mms",
+                            "label": {
+                                "en": "Up down for 5 sec medium speed"
+                            }
+                        },
+                        {
+                            "id": "sinus-900ms",
+                            "label": {
+                                "en": "sinus wave"
+                            }
+                        },
+                        {
+                            "id": "increasing-10s",
+                            "label": {
+                                "en": "Slow -> medium -> fast (10 sec)"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "play-script",
+            "title": {
+                "en": "Play script"
+            },
+            "titleFormatted": {
+                "en": "Plays a CSV file from url: [[url]]"
+            },
+            "hint": {
+                "en": "PLay a script on the Handy"
+            },
+            "args": [
+                {
+                    "type": "text",
+                    "name": "url",
+                    "placeholder": {
+                        "en": "The url of the script [CSV]"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "set-position",
+            "title": {
+                "en": "Set position"
+            },
+            "titleFormatted": {
+                "en": "Set the position of the slider to [[position]] the move should take [[duration]]"
+            },
+            "hint": {
+                "en": "Set the position of the slider"
+            },
+            "args": [
+                {
+                    "type": "range",
+                    "name": "duration",
+                    "title": "The duration of the move",
+                    "label": "ms",
+                    "min": 1,
+                    "max": 5000,
+                    "step": 1
+                },
+                {
+                    "type": "range",
+                    "name": "position",
+                    "title": "The position of the slider",
+                    "label": "mm",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                }
+            ]
+        },
+        {
+            "id": "stroke-zone",
+            "title": {
+                "en": "Stroke zone"
+            },
+            "titleFormatted": {
+                "en": "Set the stroke zone fom [[min]] to [[max]]"
+            },
+            "hint": {
+                "en": "Set the stroke zone"
+            },
+            "args": [
+                {
+                    "type": "range",
+                    "name": "min",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "label": "%"
+                },
+                {
+                    "type": "range",
+                    "name": "max",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "label": "%"
+                }
+            ]
+        }
+    ],
+    "conditions": [
+        {
+            "id": "handy-connected",
+            "title": {
+                "en": "Online"
+            },
+            "id": "handy-connected",
+            "hint": {
+                "en": "Is your Handy online?"
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "id": "handy-offline",
+            "title": {
+                "en": "Handy offline"
+            },
+            "hint": {
+                "en": "Triggers when your Handy is offline"
+            }
+        },
+        {
+            "id": "handy-online",
+            "title": {
+                "en": "Handy online"
+            },
+            "hint": {
+                "en": "Triggers when your Handy is online"
+            }
+        }
+    ]
+}

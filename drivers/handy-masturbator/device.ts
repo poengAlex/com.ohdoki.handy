@@ -22,85 +22,11 @@ class MyDevice extends Homey.Device {
       this.setCapabilityValue("state_mode", state.mode);
     });
 
-    const hampStart = this.homey.flow.getActionCard("hamp-start");
-    hampStart.registerRunListener(async (args) => {
-      //
-      this.log(args);
-      const { start } = args;
-      await this.handy?.hampStart(start);
-    })
-
-    const hampVelocity = this.homey.flow.getActionCard("hamp-velocity");
-    hampVelocity.registerRunListener(async (args) => {
-      this.log(args);
-      const { velocity } = args;
-      await this.handy?.hampVelocity(velocity);
-    });
-
-    const strokeZone = this.homey.flow.getActionCard("stroke-zone");
-    strokeZone.registerRunListener(async (args) => {
-      this.log(args);
-      const { min, max } = args;
-      await this.handy?.setStrokeZone(min, max);
-    })
-
-    const setPosition = this.homey.flow.getActionCard("set-position");
-    setPosition.registerRunListener(async (args) => {
-      this.log(args);
-      const { duration, position } = args;
-      await this.handy?.goToPosition(duration, position);
-    })
-
-    const playScript = this.homey.flow.getActionCard("play-script");
-    playScript.registerRunListener(async (args) => {
-      this.log(args);
-      const { url } = args;
-      await this.handy?.playScript(url);
-    })
-    //
-    const playScriptPreset = this.homey.flow.getActionCard("play-script-preset");
-    playScriptPreset.registerRunListener(async (args) => {
-      this.log(args);
-      const { preset } = args;
-      await this.handy?.playScriptPrest(preset);
-    })
-
-    const conditionConnected = this.homey.flow.getConditionCard("handy-connected");
-    conditionConnected.registerRunListener(async () => {
-      const connected = await this.handy?.getConnected();
-      this.log("Connected:", connected);
-      return connected;
-    });
-
-    const triggerOnline = this.homey.flow.getTriggerCard("handy-online");
-    const triggerOffline = this.homey.flow.getTriggerCard("handy-offline");
-
-
-
-    if (onlineIntervalTime) {
-      let connected = await this.handy?.getConnected();
-      //TODO: Move to driver and set timer on homey
-      // setInterval(() => {
-      //   this.handy?.getConnected().then(_connected => {
-      //     if (_connected !== connected) {
-      //       connected = _connected;
-      //       if (_connected) {
-      //         triggerOnline.trigger();
-      //       } else {
-      //         triggerOffline.trigger();
-      //       }
-      //     }
-      //   })
-      // }, onlineIntervalTime)
-    }
-
-
     this.setCapabilityValue("hamp", false);
     this.registerCapabilityListener("hamp", async (start: boolean, listner: Homey.Device.CapabilityCallback) => {
       this.log("onHamp. value:", start);
       this.log("listner:", listner);
 
-      // this.setWarning("Not online!")
       await this.handy?.hampStart(start);
       this.setCapabilityValue("hamp", start);
       this.setCapabilityValue("hamp_velocity", 0);
@@ -109,7 +35,6 @@ class MyDevice extends Homey.Device {
     this.setCapabilityValue("hamp_velocity", 0);
     this.registerCapabilityListener("hamp_velocity", async (velocity) => {
       this.log("hamp_velocity. value:", velocity);
-      // this.setWarning("Not online!")
       await this.handy?.hampVelocity(velocity)
     });
 
@@ -162,10 +87,39 @@ class MyDevice extends Homey.Device {
 
     //TODO: Add play script and play script presset
 
+    // this.setCapabilityValue("play_sc", 0);
+    this.registerCapabilityListener("play_script_preset", async (preset) => {
+      this.log("play_script_preset. value:", preset);
+      await this.handy?.playScriptPrest(preset);
+    });
+
     //TODO: Add more states
 
 
+    let device = this; // We're in a Device instance
+    let tokens = {};
+    let state = {};
     await this.handy.updateState();
+
+    let connected = this.handy.state.connected;
+    this.homey.setInterval(async () => { //Set the timer on Homey so the interval is cleared correctly
+      try {
+        const con = await this.handy?.getConnected() as boolean;
+        if (con !== connected) {
+          this.log("Triger connected change. from,to:", connected, con);
+          connected = con;
+          if (connected) {
+            (this.driver as any).triggerOnline(device, tokens, state);
+          } else {
+            (this.driver as any).triggerOffline(device, tokens, state);
+          }
+
+        }
+      } catch (error) {
+
+      }
+
+    }, onlineIntervalTime)
   }
 
   /**

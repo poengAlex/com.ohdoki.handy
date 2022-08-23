@@ -18,7 +18,7 @@ export default class Handy {
     connetionKey: string;
     #device: Homey.Device | Homey.Driver;
     api: handyApi;
-    #state!: State;
+    state!: State;
     #stateChangeCb!: StateCb
 
     constructor(connetionKey: string, app: Homey.Device | Homey.Driver, stateChangeCb: StateCb | undefined = undefined) {
@@ -38,7 +38,7 @@ export default class Handy {
     }
 
     setStateToUnknow() {
-        this.#state = {
+        this.state = {
             version: 0,
             syncedTime: 0,
             connected: false,
@@ -52,7 +52,7 @@ export default class Handy {
         if (storedState !== null) {
             this.#device.log("Got stored state:", storedState);
 
-            if (storedState.version === this.#state.version) {
+            if (storedState.version === this.state.version) {
                 const deltaTime = Date.now() - storedState.syncedTime;
                 if (deltaTime < 10 * 60 * 1000) {
                     this.#device.log("State in sync");
@@ -76,7 +76,7 @@ export default class Handy {
 
     async hampStart(start: boolean) {
         try {
-            if (this.#state.mode !== Mode.HAMP) {
+            if (this.state.mode !== Mode.HAMP) {
                 await this.setMode(Mode.HAMP);
             }
             if (start) {
@@ -92,6 +92,11 @@ export default class Handy {
 
     async hampVelocity(velocity: number) {
         try {
+            if (this.state.mode !== Mode.HAMP) {
+                await this.setMode(Mode.HAMP);
+                const res = await this.api.hamp.start(this.connetionKey);
+                this.#device.log(res);
+            }
             const res = await this.api.hamp.setHampVelocityPercent(this.connetionKey, { velocity });
             this.#device.log(res);
         } catch (err) { this.#device.log(err); this.setStateToUnknow(); throw (err) }
@@ -101,8 +106,10 @@ export default class Handy {
     async getConnected() {
         try {
             const connected = (await this.api.base.isConnected(this.connetionKey)).connected;
+            this.state.connected = connected;
+            this.updateState();
             return connected;
-        } catch (err) { this.#device.log(err) }
+        } catch (err) { this.#device.log(err); this.setStateToUnknow(); throw (err) }
         return false;
     }
 
@@ -116,10 +123,10 @@ export default class Handy {
 
     async goToPosition(duration: number, position: number) {
         try {
-            if (this.#state.mode !== Mode.HDSP) {
+            if (this.state.mode !== Mode.HDSP) {
                 await this.setMode(Mode.HDSP);
             }
-            const res = await this.api.hdsp.nextPositionAbsInTime(this.connetionKey, { position, duration })
+            const res = await this.api.hdsp.nextPositionAbsInTime(this.connetionKey, { position, duration, stopOnTarget: true })
             this.#device.log(res);
         } catch (err) { this.#device.log(err); this.setStateToUnknow(); throw (err) }
 
@@ -140,7 +147,7 @@ export default class Handy {
 
     async playScript(url: string) {
         try {
-            if (this.#state.mode !== Mode.HSSP) {
+            if (this.state.mode !== Mode.HSSP) {
                 await this.setMode(Mode.HSSP);
             }
             const scriptSetupRes = await this.api.hssp.setup(this.connetionKey, { url });
@@ -157,36 +164,37 @@ export default class Handy {
         try {
             let modeRes = (await this.api.base.setMode(this.connetionKey, { mode: mode })) as ModeUpdateResponse;
             if (modeRes.result === 0 || modeRes.result === 1) {
-                this.#state.mode = mode;
+                this.state.mode = mode;
                 this.updateState();
             }
-        } catch (err) { this.#device.log(err) }
+        } catch (err) { this.#device.log(err); this.setStateToUnknow(); throw (err) }
     }
 
     updateState() {
-        this.#device.homey.settings.set(STATE_STORAGE_KEY, this.#state);
+        this.state.connected = true;
+        this.#device.homey.settings.set(STATE_STORAGE_KEY, this.state);
         if (this.#stateChangeCb !== undefined) {
-            this.#stateChangeCb(this.#state);
+            this.#stateChangeCb(this.state);
         }
     }
 
     async syncState() {
         this.#device.log("Syncing state");
         try {
-            this.#state.connected = (await this.api.base.isConnected(this.connetionKey)).connected;
-            if (this.#state.connected) {
+            this.state.connected = (await this.api.base.isConnected(this.connetionKey)).connected;
+            if (this.state.connected) {
                 const modeRes = (await this.api.base.getMode(this.connetionKey)) as (RPCResult & { mode: Mode; })
                 if (modeRes.result === 0) {
-                    this.#state.mode = modeRes.mode;
+                    this.state.mode = modeRes.mode;
                 } else {
                     return false;
                 }
-                this.#state.syncedTime = Date.now();
-                this.#device.log("State synced", this.#state);
+                this.state.syncedTime = Date.now();
+                this.#device.log("State synced", this.state);
                 this.updateState();
                 return true;
             }
-        } catch (err) { this.#device.log(err) }
+        } catch (err) { this.#device.log(err); this.setStateToUnknow(); throw (err) }
         return false
     }
 }

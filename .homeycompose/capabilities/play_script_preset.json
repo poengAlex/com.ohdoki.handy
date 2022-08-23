@@ -1,10 +1,30 @@
 {
-    "type": "boolean",
+    "type": "enum",
     "title": {
         "en": "Play a preset script"
     },
     "getable": false,
     "setable": true,
-    "uiComponent": "toggle",
+    "uiComponent": "picker",
+    "values": [
+        {
+            "id": "up-down-5s-192mms",
+            "title": {
+                "en": "Up down for 5 sec medium speed"
+            }
+        },
+        {
+            "id": "sinus-900ms",
+            "title": {
+                "en": "sinus wave"
+            }
+        },
+        {
+            "id": "increasing-10s",
+            "title": {
+                "en": "Slow -> medium -> fast (10 sec)"
+            }
+        }
+    ],
     "uiQuickAction": false
 }
