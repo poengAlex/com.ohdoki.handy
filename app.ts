@@ -10,6 +10,11 @@ class MyApp extends Homey.App {
    */
   async onInit() {
     this.log('The Handy app has been initialized');
+    const onlineIntervalTime = this.homey.settings.get('interval-time');
+    this.log("onlineIntervalTime:", onlineIntervalTime);
+    if (onlineIntervalTime == null) {
+      this.homey.settings.set('interval-time', 10000);
+    }
   }
 
 }

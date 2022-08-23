@@ -4,44 +4,9 @@
 <head>
 	<!-- The '/homey.js' script must be included in your settings view to work -->
 	<script type="text/javascript" src="/homey.js" data-origin="settings"></script>
-	<style>
-		/* (A) THE BASE */
-		.bar {
-			padding: 10px;
-			margin: 10px;
-			color: #333;
-			background: #fafafa;
-			border: 1px solid #ccc;
-		}
-
-		/* (B) THE VARIATIONS */
-		.info {
-			color: #204a8e;
-			background: #c9ddff;
-			border: 1px solid #4c699b;
-		}
-
-		.success {
-			color: #2b7515;
-			background: #ecffd6;
-			border: 1px solid #617c42;
-		}
-
-		.warn {
-			color: #756e15;
-			background: #fffbd1;
-			border: 1px solid #87803e;
-		}
-
-		.error {
-			color: #ba3939;
-			background: #ffe0e0;
-			border: 1px solid #a33a3a;
-		}
-	</style>
 </head>
 
-<body onload="onload()">
+<body>
 	<h1 data-i18n="settings.title">
 		<!-- This will be filled with the translated string with key 'settings.title'. -->
 	</h1>
@@ -58,32 +23,36 @@
 
 	<button id="save" class="right">Save changes</button>
 
-	<script type="text/javascript">
-		function onload() {
-			console.log('STARTED');
-			// a method named 'onHomeyReady' must be present in your code		 function onHomeyReady(Homey) {			 // Tell Homey we're ready to be displayed			 Homey.ready();			 console.log('STARTED Homey.ready()');
-			var connectionKey = document.getElementById("connection-key");
-			var IntervalTime = document.getElementById("interval-time");
-			var saveElement = document.getElementById("save");
-			Homey.get("connection-key", function (err, key) {
-				if (err) return Homey.alert(err);
-				connectionKey.value = key;
-			});
-			Homey.get("interval-time", function (err, time) {
-				if (err) return Homey.alert(err); IntervalTime.value = time;
-			});
 
-			saveElement.addEventListener("click", function (e) {
-				Homey.set("connection-key", connectionKey.value, function (err) {
-					if (err) return Homey.alert(err); Homey.confirm("Connection key saved")
-				});
-				Homey.set("interval-time", connectionKey.value, function (err) {
-					if (err) return Homey.alert(err); Homey.confirm("Interval time saved")
-				});
-			});
-		}
-
-	</script>
 </body>
+<script type="text/javascript">
+	function onHomeyReady(Homey) {
+		console.log('STARTED');
+		// a method named 'onHomeyReady' must be present in your code		 function onHomeyReady(Homey) {			 // Tell Homey we're ready to be displayed			 Homey.ready();			 console.log('STARTED Homey.ready()');
+		// var connectionKey = document.getElementById("connection-key");
+		var IntervalTime = document.getElementById("interval-time");
+		var saveElement = document.getElementById("save");
+		// Homey.get("connection-key", function (err, key) {
+		// 	if (err) return Homey.alert(err);
+		// 	connectionKey.value = key;
+		// });
+		Homey.get("interval-time", function (err, time) {
+			if (err) return Homey.alert(err); IntervalTime.value = time;
+		});
+
+		saveElement.addEventListener("click", function (e) {
+			// Homey.set("connection-key", connectionKey.value, function (err) {
+			// 	if (err) return Homey.alert(err); Homey.confirm("Connection key saved")
+			// });
+			Homey.set("interval-time", connectionKey.value, function (err) {
+				if (err) return Homey.alert(err);
+				Homey.confirm("Interval time saved");
+
+			});
+		});
+		Homey.ready();
+	}
+
+</script>
 
 </html>

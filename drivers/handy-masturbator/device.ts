@@ -12,9 +12,7 @@ class MyDevice extends Homey.Device {
     this.unsetWarning();
     const onlineIntervalTime = this.homey.settings.get('interval-time');
     this.log("onlineIntervalTime:", onlineIntervalTime);
-    if (onlineIntervalTime == null) {
-      this.homey.settings.set('interval-time', 10000);
-    }
+
     const key = this.getSettings().key;
     this.log("key:", key);
 
