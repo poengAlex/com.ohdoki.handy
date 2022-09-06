@@ -105,7 +105,7 @@ class MyDevice extends Homey.Device {
     this.homey.setInterval(async () => { //Set the timer on Homey so the interval is cleared correctly
       try {
         const con = await this.handy?.getConnected() as boolean;
-        if (con !== connected) {
+        if (typeof con === 'boolean' && con !== connected) {
           this.log("Triger connected change. from,to:", connected, con);
           connected = con;
           if (connected) {

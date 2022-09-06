@@ -4,5 +4,11 @@
   },
   "1.0.2": {
     "en": "Added formated titles"
+  },
+  "1.0.3": {
+    "en": "Changed icon, added cloud platform, connected state change check improvements"
+  },
+  "1.0.4": {
+    "en": "Improved configuration."
   }
 }

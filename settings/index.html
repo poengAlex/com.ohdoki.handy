@@ -22,7 +22,7 @@
 	</fieldset>
 
 	<button id="save" class="right">Save changes</button>
-
+	<p id="info" style="display: none;">Saved</p>
 
 </body>
 <script type="text/javascript">
@@ -30,23 +30,25 @@
 		console.log('STARTED');
 		// a method named 'onHomeyReady' must be present in your code		 function onHomeyReady(Homey) {			 // Tell Homey we're ready to be displayed			 Homey.ready();			 console.log('STARTED Homey.ready()');
 		// var connectionKey = document.getElementById("connection-key");
-		var IntervalTime = document.getElementById("interval-time");
-		var saveElement = document.getElementById("save");
-		// Homey.get("connection-key", function (err, key) {
-		// 	if (err) return Homey.alert(err);
-		// 	connectionKey.value = key;
-		// });
+		const IntervalTime = document.getElementById("interval-time");
+		const saveElement = document.getElementById("save");
+		const infoText = document.getElementById("info");
+		let timer;
+
 		Homey.get("interval-time", function (err, time) {
 			if (err) return Homey.alert(err); IntervalTime.value = time;
 		});
 
 		saveElement.addEventListener("click", function (e) {
-			// Homey.set("connection-key", connectionKey.value, function (err) {
-			// 	if (err) return Homey.alert(err); Homey.confirm("Connection key saved")
-			// });
-			Homey.set("interval-time", connectionKey.value, function (err) {
+			clearTimeout(infoText);
+			Homey.confirm("Interval time saved. Restart app to apply the changes.");
+			infoText.style.display = "block";
+			infoText = setTimeout(() => {
+				infoText.style.display = "none";
+			}, 2000);
+			Homey.set("interval-time", IntervalTime.value, function (err) {
+				//TODO: This is never called. Maybe only when err?
 				if (err) return Homey.alert(err);
-				Homey.confirm("Interval time saved");
 
 			});
 		});

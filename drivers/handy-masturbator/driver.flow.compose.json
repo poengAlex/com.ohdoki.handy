@@ -36,6 +36,9 @@
                 {
                     "type": "range",
                     "name": "velocity",
+                    "title": {
+                        "en": "Velocity"
+                    },
                     "min": 0,
                     "max": 100,
                     "step": 1,
@@ -58,6 +61,9 @@
                 {
                     "type": "dropdown",
                     "name": "preset",
+                    "title": {
+                        "en": "Preset"
+                    },
                     "values": [
                         {
                             "id": "up-down-5s-192mms",
@@ -95,6 +101,9 @@
             "args": [
                 {
                     "type": "text",
+                    "title": {
+                        "en": "url"
+                    },
                     "name": "url",
                     "placeholder": {
                         "en": "The url of the script [CSV]"
@@ -148,6 +157,9 @@
             "args": [
                 {
                     "type": "range",
+                    "title": {
+                        "en": "range min"
+                    },
                     "name": "min",
                     "min": 0,
                     "max": 100,
@@ -156,6 +168,9 @@
                 },
                 {
                     "type": "range",
+                    "title": {
+                        "en": "range max"
+                    },
                     "name": "max",
                     "min": 0,
                     "max": 100,

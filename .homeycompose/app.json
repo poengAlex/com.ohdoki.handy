@@ -1,10 +1,11 @@
 {
   "id": "com.ohdoki.handy",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "name": {
     "en": "Handy interactive stroker"

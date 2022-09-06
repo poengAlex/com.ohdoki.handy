@@ -14,7 +14,8 @@
     "state_mode"
   ],
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "connectivity": [
     "cloud"
