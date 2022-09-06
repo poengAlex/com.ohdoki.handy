@@ -28,6 +28,7 @@
 <script type="text/javascript">
 	function onHomeyReady(Homey) {
 		console.log('STARTED');
+		Homey.ready();
 		// a method named 'onHomeyReady' must be present in your code		 function onHomeyReady(Homey) {			 // Tell Homey we're ready to be displayed			 Homey.ready();			 console.log('STARTED Homey.ready()');
 		// var connectionKey = document.getElementById("connection-key");
 		const IntervalTime = document.getElementById("interval-time");
@@ -40,19 +41,21 @@
 		});
 
 		saveElement.addEventListener("click", function (e) {
+			const newTime = IntervalTime.value * 1;
 			clearTimeout(infoText);
-			Homey.confirm("Interval time saved. Restart app to apply the changes.");
-			infoText.style.display = "block";
-			infoText = setTimeout(() => {
-				infoText.style.display = "none";
-			}, 2000);
-			Homey.set("interval-time", IntervalTime.value, function (err) {
+			//Needs to be called before Handy.confirm();
+			Homey.set("interval-time", newTime, function (err) {
 				//TODO: This is never called. Maybe only when err?
 				if (err) return Homey.alert(err);
 
 			});
+			Homey.alert("Interval time saved. Restart app to apply the changes. New time: " + newTime + "ms");
+			infoText.style.display = "block";
+			infoText = setTimeout(() => {
+				infoText.style.display = "none";
+			}, 2000);
 		});
-		Homey.ready();
+
 	}
 
 </script>

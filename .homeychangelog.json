@@ -10,5 +10,8 @@
   },
   "1.0.4": {
     "en": "Improved configuration."
+  },
+  "1.0.5": {
+    "en": "Possible to change pulling time."
   }
 }
