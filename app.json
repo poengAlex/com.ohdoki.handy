@@ -42,7 +42,7 @@
           "en": "Handy offline"
         },
         "titleFormatted": {
-          "en": "Handy offline"
+          "en": "Handy is offline"
         },
         "hint": {
           "en": "Triggers when your Handy is offline"
@@ -61,7 +61,7 @@
           "en": "Handy online"
         },
         "titleFormatted": {
-          "en": "Handy online"
+          "en": "Handy is online"
         },
         "hint": {
           "en": "Triggers when your Handy is online"
@@ -82,10 +82,10 @@
           "en": "Online"
         },
         "titleFormatted": {
-          "en": "Online"
+          "en": "Is !{{online|offline}}"
         },
         "hint": {
-          "en": "Is your Handy online?"
+          "en": "Checks if your Handy is online?"
         },
         "args": [
           {
@@ -103,7 +103,7 @@
           "en": "Alternating motion"
         },
         "titleFormatted": {
-          "en": "Starts/Stops ([[start]]) Alternating motion"
+          "en": "[[start]] alternating motion"
         },
         "hint": {
           "en": "Start or stop Handy Alternate Motion Protocol (HAMP)"
@@ -129,7 +129,7 @@
           "en": "Alternating motion velocity"
         },
         "titleFormatted": {
-          "en": "Sets the HAMP velcoity to [[velocity]]"
+          "en": "Set velcoity to [[velocity]]"
         },
         "hint": {
           "en": "Set the speed of HAMP mode"
@@ -159,7 +159,7 @@
           "en": "Play a script preset"
         },
         "titleFormatted": {
-          "en": "Plays a preset CSV file. Preset script [[preset]]."
+          "en": "Play preset script ([[preset]])."
         },
         "hint": {
           "en": "Play a preset script on Handy"
@@ -192,7 +192,7 @@
               {
                 "id": "increasing-10s",
                 "label": {
-                  "en": "Slow -> medium -> fast (10 sec)"
+                  "en": "Slow, medium, fast (10 sec)"
                 }
               }
             ]
@@ -205,10 +205,10 @@
           "en": "Play a script"
         },
         "titleFormatted": {
-          "en": "Plays a CSV file from url: [[url]]"
+          "en": "Play script from [[url]]"
         },
         "hint": {
-          "en": "PLay a script on the Handy"
+          "en": "Play a script on the Handy"
         },
         "args": [
           {
@@ -234,7 +234,7 @@
           "en": "Set position of the slider"
         },
         "titleFormatted": {
-          "en": "Set the position of the slider to [[position]] the move should take [[duration]]"
+          "en": "Set Handy to [[position]] within [[duration]]"
         },
         "hint": {
           "en": "Set the position of the slider"
@@ -271,7 +271,7 @@
           "en": "Set the stroke zone"
         },
         "titleFormatted": {
-          "en": "Set the stroke zone fom [[min]] to [[max]]"
+          "en": "Set stroke zone from [[min]] to [[max]]"
         },
         "hint": {
           "en": "Set the stroke zone"

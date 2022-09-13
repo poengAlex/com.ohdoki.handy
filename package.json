@@ -6,6 +6,7 @@
     "build": "tsc",
     "dev": "nodemon --exec homey app run --watch ['app.ts'] --ext ['ts']",
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "publish": "homey app publish",
     "importApi": "rimraf API && openapi --exportSchemas true --input https://www.handyfeeling.com/api/handy/v2/spec --output API --name handyApi --indent 4 -c axios"
   },
   "dependencies": {

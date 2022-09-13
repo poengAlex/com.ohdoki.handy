@@ -93,13 +93,19 @@ class MyDevice extends Homey.Device {
       await this.handy?.playScriptPrest(preset);
     });
 
+    this.registerCapabilityListener("play_script", async (url) => {
+      this.log("play_script. value:", url);
+      await this.handy?.playScript(url);
+    });
+
     //TODO: Add more states
 
 
     let device = this; // We're in a Device instance
     let tokens = {};
     let state = {};
-    await this.handy.updateState();
+
+    await this.handy?.getConnected();
 
     let connected = this.handy.state.connected;
     this.homey.setInterval(async () => { //Set the timer on Homey so the interval is cleared correctly
@@ -113,7 +119,7 @@ class MyDevice extends Homey.Device {
           } else {
             (this.driver as any).triggerOffline(device, tokens, state);
           }
-
+          this.handy!.state.connected = connected;
         }
       } catch (error) {
 

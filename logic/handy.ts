@@ -171,7 +171,7 @@ export default class Handy {
     }
 
     updateState() {
-        this.state.connected = true;
+        // this.state.connected = true;
         this.#device.homey.settings.set(STATE_STORAGE_KEY, this.state);
         if (this.#stateChangeCb !== undefined) {
             this.#stateChangeCb(this.state);
