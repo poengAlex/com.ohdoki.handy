@@ -1,7 +1,7 @@
 {
     "type": "number",
     "title": {
-        "en": "Set the position of the slider (move duration 500ms)"
+        "en": "Set slider position"
     },
     "getable": true,
     "setable": true,

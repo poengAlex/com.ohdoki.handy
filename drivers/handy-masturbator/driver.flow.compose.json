@@ -13,11 +13,25 @@
             },
             "args": [
                 {
-                    "type": "checkbox",
+                    "type": "dropdown",
                     "name": "start",
                     "title": {
                         "en": "Start"
-                    }
+                    },
+                    "values": [
+                        {
+                            "id": "start",
+                            "label": {
+                                "en": "start"
+                            }
+                        },
+                        {
+                            "id": "stop",
+                            "label": {
+                                "en": "stop"
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -27,7 +41,7 @@
                 "en": "Alternating motion velocity"
             },
             "titleFormatted": {
-                "en": "Set velcoity to [[velocity]]"
+                "en": "Set velocity to [[velocity]]"
             },
             "hint": {
                 "en": "Set the speed of HAMP mode"
@@ -52,7 +66,7 @@
                 "en": "Play a script preset"
             },
             "titleFormatted": {
-                "en": "Play preset script ([[preset]])."
+                "en": "Play preset script [[preset]]."
             },
             "hint": {
                 "en": "Play a preset script on Handy"
@@ -68,19 +82,19 @@
                         {
                             "id": "up-down-5s-192mms",
                             "label": {
-                                "en": "Up down for 5 sec medium speed"
+                                "en": "Up-Down"
                             }
                         },
                         {
                             "id": "sinus-900ms",
                             "label": {
-                                "en": "sinus wave"
+                                "en": "Sinus wave"
                             }
                         },
                         {
                             "id": "increasing-10s",
                             "label": {
-                                "en": "Slow, medium, fast (10 sec)"
+                                "en": "Slow-Medium-Fast"
                             }
                         }
                     ]
@@ -114,13 +128,13 @@
         {
             "id": "set-position",
             "title": {
-                "en": "Set position of the slider"
+                "en": "Set slider position"
             },
             "titleFormatted": {
                 "en": "Set Handy to [[position]] within [[duration]]"
             },
             "hint": {
-                "en": "Set the position of the slider"
+                "en": "Set the position of the slider of the Handy. It will move there using a set duration time in ms."
             },
             "args": [
                 {

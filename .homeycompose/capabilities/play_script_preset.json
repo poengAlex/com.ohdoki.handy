@@ -10,19 +10,19 @@
         {
             "id": "up-down-5s-192mms",
             "title": {
-                "en": "Up down for 5 sec medium speed"
+                "en": "Up-Down"
             }
         },
         {
             "id": "sinus-900ms",
             "title": {
-                "en": "sinus wave"
+                "en": "Sinus wave"
             }
         },
         {
             "id": "increasing-10s",
             "title": {
-                "en": "Slow -> medium -> fast (10 sec)"
+                "en": "Slow - Medium - Fast"
             }
         }
     ],

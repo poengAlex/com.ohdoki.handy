@@ -16,5 +16,8 @@
   },
   "1.0.6": {
     "en": "Better titles and text. Play script from url bug fixed, inverted condition card, handy state bug fixed."
+  },
+  "1.0.7": {
+    "en": "Better titles and text."
   }
 }

@@ -41,7 +41,8 @@ class MyDriver extends Homey.Driver {
       this.log("state:", state);
       // this.log("handy:", args.device.handy); //The Handy object
 
-      const { start } = args;
+      let { start } = args;
+      start = start === "start";
       await args.device.handy?.hampStart(start);
     })
 
